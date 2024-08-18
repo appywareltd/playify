@@ -3,6 +3,7 @@ package com.kaya.playify.playify
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.database.Cursor
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -13,6 +14,7 @@ import android.os.IBinder
 import android.provider.MediaStore
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import com.kaya.playify.playify.Classes.PlayerStatus
 import com.kaya.playify.playify.Classes.RepeatMode
 import com.kaya.playify.playify.Classes.ShuffleMode
@@ -437,7 +439,16 @@ class PlayifyPlayer: Service() {
             .setContentTitle("Playify")
             .setContentText("Playify Music")
             .build()
-        startForeground(1, notification)
+        ServiceCompat.startForeground(
+            this,
+            1,
+            notification,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            } else {
+                0
+            }
+        )
         return START_STICKY
     }
 
