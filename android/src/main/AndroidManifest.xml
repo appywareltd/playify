@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.kaya.playify.playify">
     <application>
-        <service android:enabled="true" android:name=".PlayifyPlayer" />
+        <service
+            android:enabled="true" 
+            android:foregroundServiceType="mediaPlayback"
+            android:name=".PlayifyPlayer" />
         <receiver
             android:name=".PlayifyPlayer"
             android:enabled="true"
