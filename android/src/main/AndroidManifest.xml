@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.kaya.playify.playify">
+    
+    <!--  Request the general foreground service permission  -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Add foreground Media Playback permission -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <application>
         <service
             android:enabled="true" 
